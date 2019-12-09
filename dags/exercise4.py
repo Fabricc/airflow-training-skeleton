@@ -38,12 +38,14 @@ print_date = PythonOperator(
     dag=dag,
 )
 
+print_date >> sleep
+
 for i in [1, 5, 10]:
     sleep = BashOperator(
         task_id=f'sleep{i}',
         bash_command=f'sleep {i}',
         dag=dag,
     )
-    print_date >> sleep >> the_end
+    sleep >> the_end
 
 
