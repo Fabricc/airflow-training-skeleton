@@ -3,6 +3,8 @@
 from datetime import timedelta
 from datetime import datetime
 
+import airflow
+from airflow.models import DAG
 from airflow.hooks.postgres_hook import PostgresHook
 from airflow.utils.decorators import apply_defaults
 from airflow.contrib.operators.postgres_to_gcs_operator import PostgresToGoogleCloudStorageOperator
