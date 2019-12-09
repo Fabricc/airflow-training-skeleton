@@ -35,11 +35,14 @@ def printWeekDate():
 
 def return_branch(**kwargs):
     weekday = printWeekDate()
-    if weekday == 0: return 'sendToBob'
-    if weekday == 1: return 'sendToJoe'
-    if weekday == 2: return 'sendToAlice'
+    if weekday == 0:
+        return 'sendToBob'
+    if weekday == 1:
+        return 'sendToJoe'
+    if weekday == 2:
+        return 'sendToAlice'
 
-    return 'sendToBob';
+    return 'sendToBob'
 
 
 print_date = PythonOperator(
@@ -51,7 +54,9 @@ print_date = PythonOperator(
 branching = BranchPythonOperator(
     task_id='branching',
     python_callable=return_branch,
-    provide_context=True)
+    provide_context=True,
+    dag=dag,
+)
 
 for i in ['bob', 'alice', 'joe']:
     send = DummyOperator(
