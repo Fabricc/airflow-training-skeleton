@@ -7,6 +7,7 @@ from airflow.models import DAG
 from airflow.operators.bash_operator import BashOperator
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
+from airflow.operators.branch_python_operator import BranchPythonOperator
 
 args = {
     'owner': 'Airflow',
