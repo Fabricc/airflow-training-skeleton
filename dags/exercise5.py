@@ -52,6 +52,14 @@ print_date = PythonOperator(
     dag=dag,
 )
 
+branching = BranchPythonOperator(
+    task_id='branching',
+    python_callable=return_branch,
+    provide_context=True,
+    dag=dag,
+)
+
+print_date >> branching
 
 for i in ['bob', 'alice', 'joe']:
     send = DummyOperator(
@@ -59,11 +67,6 @@ for i in ['bob', 'alice', 'joe']:
         dag=dag,
     )
 
-    branching = BranchPythonOperator(
-        task_id=f'branching{i}',
-        python_callable=return_branch,
-        provide_context=True,
-        dag=dag,
-    )
 
-    print_date >> branching >> send >> the_end
+
+    branching >> send >> the_end
