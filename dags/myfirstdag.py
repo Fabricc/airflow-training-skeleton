@@ -16,7 +16,7 @@ args = {
 dag = DAG(
     dag_id='my_first_dag',
     default_args=args,
-    schedule_interval='0 0 * * *',
+    schedule_interval=None,
     dagrun_timeout=timedelta(minutes=60),
 )
 
@@ -55,13 +55,13 @@ run_this4 = BashOperator(
 # [END howto_operator_bash]
 
 
-for i in range(3):
-    task = BashOperator(
-        task_id='runme_' + str(i),
-        bash_command='echo "{{ task_instance_key_str }}" && sleep 1',
-        dag=dag,
-    )
-    task >> run_this
+# for i in range(3):
+#     task = BashOperator(
+#         task_id='runme_' + str(i),
+#         bash_command='echo "{{ task_instance_key_str }}" && sleep 1',
+#         dag=dag,
+#     )
+#     task >> run_this
 
 # [START howto_operator_bash_template]
 also_run_this = BashOperator(
