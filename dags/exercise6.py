@@ -21,7 +21,7 @@ dag = DAG(
 go = PostgresToGoogleCloudStorageOperator(postgres_conn_id='postgres_training_id',
                                                     sql='SELECT transfer_date FROM land_registry_price_paid_uk LIMIT 30',
                                                     bucket='airflow_training_bucket',
-                                                    filename='tst.json{}',
+                                                    filename='tst{}.json',
                                                     task_id='postgres_hook',
                                                     dag=dag)
 
