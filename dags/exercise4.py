@@ -40,7 +40,7 @@ print_date = PythonOperator(
 
 for i in [1, 5, 10]:
     sleep = BashOperator(
-        task_id='sleep',
+        task_id=f'sleep{i}',
         bash_command=f'sleep({i})',
         dag=dag,
     )
