@@ -27,28 +27,28 @@ run_this_last = DummyOperator(
 
 # [START howto_operator_bash]
 run_this1 = BashOperator(
-    task_id='echo 1',
+    task_id='echo_1',
     bash_command='echo 1',
     dag=dag,
 )
 
 # [START howto_operator_bash]
 run_this2 = BashOperator(
-    task_id='echo 1',
+    task_id='echo_2',
     bash_command='echo 2',
     dag=dag,
 )
 
 # [START howto_operator_bash]
 run_this3 = BashOperator(
-    task_id='echo 1',
+    task_id='echo_3',
     bash_command='echo 3',
     dag=dag,
 )
 
 # [START howto_operator_bash]
 run_this4 = BashOperator(
-    task_id='echo 1',
+    task_id='echo4',
     bash_command='echo 4',
     dag=dag,
 )
