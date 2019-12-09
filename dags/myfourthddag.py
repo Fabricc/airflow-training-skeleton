@@ -33,12 +33,12 @@ run_this1 = BashOperator(
 )
 def printExecutionDate(date):
     """This is a function that will run within the DAG execution"""
-    print(date);
+    print(date)
 
 print_date = PythonOperator(
     task_id = "printDate",
     python_callable=printExecutionDate,
-    op_kwargs={'date': '{{execution_date}}}',
+    op_kwargs={'date': '{{execution_date}}}'},
     dag=dag,
 )
 
