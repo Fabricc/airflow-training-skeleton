@@ -22,7 +22,7 @@ dag = DAG(
 )
 
 the_end = DummyOperator(
-    task_id='run_this_last',
+    task_id='the_end',
     dag=dag
 )
 
@@ -44,7 +44,7 @@ for i in [1, 5, 10]:
         bash_command=f'sleep({i})',
         dag=dag,
     )
-    sleep >> the_end
+    print_date >> sleep
 
-print_date >> sleep
+sleep >> print_date
 
