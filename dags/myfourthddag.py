@@ -21,17 +21,12 @@ dag = DAG(
     dagrun_timeout=timedelta(minutes=60),
 )
 
-run_this_last = DummyOperator(
+the_end = DummyOperator(
     task_id='run_this_last',
     dag=dag
 )
 
-# [START howto_operator_bash]
-run_this1 = BashOperator(
-    task_id='echo_1',
-    bash_command='echo 1',
-    dag=dag,
-)
+
 def printExecutionDate(date):
     """This is a function that will run within the DAG execution"""
     print(date)
@@ -43,12 +38,14 @@ print_date = PythonOperator(
     dag=dag,
 )
 
-also_run_this = BashOperator(
-    task_id='also_run_this',
-    bash_command='echo "run_id={{ run_id }} | dag_run={{ dag_run }}"',
-    dag=dag,
-)
+for i in [1, 5, 10]:
+    sleep = BashOperator(
+        task_id='sleep',
+        bash_command=f'sleep({i})',
+        dag=dag,
+    )
+    sleep >> the_end
 # [END howto_operator_bash_template]
 
-print_date
+print_date >> sleep
 
