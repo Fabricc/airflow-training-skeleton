@@ -5,7 +5,6 @@ from datetime import datetime
 
 from airflow.hooks.postgres_hook import PostgresHook
 from airflow.utils.decorators import apply_defaults
-from airflow.contrib.operators.postgres_to_gcs_operator import BaseSQLToGoogleCloudStorageOperator
 from airflow.contrib.operators.postgres_to_gcs_operator import PostgresToGoogleCloudStorageOperator
 
 args = {
