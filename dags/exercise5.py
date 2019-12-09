@@ -24,7 +24,8 @@ dag = DAG(
 
 the_end = DummyOperator(
     task_id='the_end',
-    dag=dag
+    dag=dag,
+    trigger_rule='none_failed',
 )
 
 
