@@ -61,7 +61,7 @@ branching = BranchPythonOperator(
 
 print_date >> branching
 
-for i in ['bob', 'alice', 'joe']:
+for i in ['Bob', 'Alice', 'Joe']:
     send = DummyOperator(
         task_id=f'sendTo{i}',
         dag=dag,
