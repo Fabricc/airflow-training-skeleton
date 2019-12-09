@@ -7,6 +7,7 @@ import airflow
 from airflow.models import DAG
 from airflow.operators.bash_operator import BashOperator
 from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.python_operator import PythonOperator
 
 args = {
     'owner': 'Airflow',
@@ -42,16 +43,6 @@ print_date = PythonOperator(
     dag=dag,
 )
 
-
-# for i in range(3):
-#     task = BashOperator(
-#         task_id='runme_' + str(i),
-#         bash_command='echo "{{ task_instance_key_str }}" && sleep 1',
-#         dag=dag,
-#     )
-#     task >> run_this
-
-# [START howto_operator_bash_template]
 also_run_this = BashOperator(
     task_id='also_run_this',
     bash_command='echo "run_id={{ run_id }} | dag_run={{ dag_run }}"',
