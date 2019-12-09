@@ -1,6 +1,7 @@
 """Example DAG demonstrating the usage of the BashOperator."""
 
 from datetime import timedelta
+from datetime import datetime
 
 import airflow
 from airflow.models import DAG
@@ -29,8 +30,8 @@ the_end = DummyOperator(
 
 def printWeekDate():
     """This is a function that will run within the DAG execution"""
-    print(datetime.datetime.today().weekday())
-    return datetime.datetime.today().weekday()
+    print(datetime.today().weekday())
+    return datetime.today().weekday()
 
 
 def return_branch(**kwargs):
