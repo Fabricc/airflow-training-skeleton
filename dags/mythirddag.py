@@ -14,7 +14,7 @@ args = {
 }
 
 dag = DAG(
-    dag_id='my_second_dag',
+    dag_id='my_third_dag',
     default_args=args,
     schedule_interval=timedelta(minutes=150),
     dagrun_timeout=timedelta(minutes=60),
@@ -22,7 +22,7 @@ dag = DAG(
 
 run_this_last = DummyOperator(
     task_id='run_this_last',
-    dag=dag,
+    dag=dag
 )
 
 # [START howto_operator_bash]
