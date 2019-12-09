@@ -17,7 +17,7 @@ args = {
 dag = DAG(
     dag_id='my_fourth_dag',
     default_args=args,
-    schedule_interval=timedelta(minutes=150),
+    schedule_interval=None,
     dagrun_timeout=timedelta(minutes=60),
 )
 
@@ -45,7 +45,6 @@ for i in [1, 5, 10]:
         dag=dag,
     )
     sleep >> the_end
-# [END howto_operator_bash_template]
 
 print_date >> sleep
 
