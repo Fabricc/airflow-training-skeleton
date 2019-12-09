@@ -58,4 +58,4 @@ for i in ['bob', 'alice', 'joe']:
         task_id=f'sendTo{i}',
         dag=dag,
     )
-    print_date >> send >> the_end
+    print_date >> branching >> send >> the_end
