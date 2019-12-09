@@ -44,7 +44,6 @@ for i in [1, 5, 10]:
         bash_command=f'sleep({i})',
         dag=dag,
     )
-    print_date >> sleep
+    print_date >> sleep >> the_end
 
-sleep >> print_date
 
