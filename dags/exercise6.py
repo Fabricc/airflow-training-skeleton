@@ -24,6 +24,7 @@ postgresHook = PostgresToGoogleCloudStorageOperator(conn_name_attr='postgres_tra
                                                     sql='SELECT transfer_date FROM land_registry_price_paid_uk LIMIT 30',
                                                     bucket='airflow_training_bucket',
                                                     filename='tst.json',
+                                                    task_id='postgres_hook',
                                                     dag=dag)
 
 postgresHook
