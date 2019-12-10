@@ -4,7 +4,7 @@ import json
 import requests
 
 import airflow
-from airflow.models.hooks import BaseHook
+from airflow.hooks.base_hook import BaseHook
 
 
 class LaunchHook(BaseHook):
