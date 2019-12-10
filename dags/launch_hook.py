@@ -14,7 +14,7 @@ class LaunchHook(BaseHook):
         self._end_date = end_date
 
     def _print_stats(self):
-        with open(f"/data/rocket_launches/ds={start_date}/launches.json") as f:
+        with open(f"/tmp/rocket_launches/ds={start_date}/launches.json") as f:
             data = json.load(f)
             rockets_launched = [launch["name"] for launch in data["launches"]]
             rockets_str = ""
@@ -24,7 +24,7 @@ class LaunchHook(BaseHook):
 
     def _download_rocket_launches(self):
         query = f"https://launchlibrary.net/1.4/launch?startdate={self.start_date}&enddate={self.end_date}"
-        result_path = f"/data/rocket_launches/ds={self.start_date}"
+        result_path = f"/tmp/rocket_launches/ds={self.start_date}"
         pathlib.Path(result_path).mkdir(parents=True, exist_ok=True)
         response = requests.get(query)
         with open(posixpath.join(result_path, "launches.json"), "w") as f:
