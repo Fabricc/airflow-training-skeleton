@@ -9,7 +9,7 @@ from airflow.hooks.base_hook import BaseHook
 
 class LaunchHook(BaseHook):
     def __init__(self, first_date, end_date):
-        super().__init__()
+        super().__init__(source=None)
         self._first_date = first_date
         self._end_date = end_date
 
