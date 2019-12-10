@@ -1,7 +1,7 @@
 import airflow
 from airflow.models import DAG
 
-from dags.http_to_gcs_operator import HttpToGcsOperator
+from http_to_gcs_operator import HttpToGcsOperator
 
 args = {"owner": "godatadriven", "start_date": airflow.utils.dates.days_ago(1)}
 dag = DAG(
