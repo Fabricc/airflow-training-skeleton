@@ -12,7 +12,7 @@ dag = DAG(
 )
 
 download_rocket_launches = LaunchToGCSOperator(
-    start_date=airflow.utils.dates.days_ago(10),
+    first_date=airflow.utils.dates.days_ago(10),
     end_date=airflow.utils.dates.days_ago(1),
     task_id="download_rocket_launches",
     dag=dag,
