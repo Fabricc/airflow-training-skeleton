@@ -32,5 +32,5 @@ class LaunchHook(BaseHook):
 
         return self._print_stats(self)
 
-    def get_launches(self, **kwargs):
+    def get_launches(self):
         return self._download_rocket_launches(self)
