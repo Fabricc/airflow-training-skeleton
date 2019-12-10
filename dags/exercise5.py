@@ -11,22 +11,18 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.operators.python_operator import BranchPythonOperator
 
 args = {
-    'owner': 'Airflow',
-    'start_date': airflow.utils.dates.days_ago(2),
+    "owner": "Airflow",
+    "start_date": airflow.utils.dates.days_ago(2),
 }
 
 dag = DAG(
-    dag_id='my_fifth_dag',
+    dag_id="my_fifth_dag",
     default_args=args,
     schedule_interval=None,
     dagrun_timeout=timedelta(minutes=60),
 )
 
-the_end = DummyOperator(
-    task_id='the_end',
-    dag=dag,
-    trigger_rule='none_failed',
-)
+the_end = DummyOperator(task_id="the_end", dag=dag, trigger_rule="none_failed",)
 
 
 def printWeekDate():
@@ -38,36 +34,26 @@ def printWeekDate():
 def return_branch(**kwargs):
     weekday = printWeekDate()
     if weekday == 0:
-        return 'sendToBob'
+        return "sendToBob"
     if weekday == 1:
-        return 'sendToJoe'
+        return "sendToJoe"
     if weekday == 2:
-        return 'sendToAlice'
+        return "sendToAlice"
 
-    return 'sendToBob'
+    return "sendToBob"
 
 
 print_date = PythonOperator(
-    task_id="print_week_date",
-    python_callable=printWeekDate,
-    dag=dag,
+    task_id="print_week_date", python_callable=printWeekDate, dag=dag,
 )
 
 branching = BranchPythonOperator(
-    task_id='branching',
-    python_callable=return_branch,
-    provide_context=True,
-    dag=dag,
+    task_id="branching", python_callable=return_branch, provide_context=True, dag=dag,
 )
 
 print_date >> branching
 
-for i in ['Bob', 'Alice', 'Joe']:
-    send = DummyOperator(
-        task_id=f'sendTo{i}',
-        dag=dag,
-    )
-
-
+for i in ["Bob", "Alice", "Joe"]:
+    send = DummyOperator(task_id=f"sendTo{i}", dag=dag,)
 
     branching >> send >> the_end

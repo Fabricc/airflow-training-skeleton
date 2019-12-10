@@ -20,7 +20,9 @@ class LaunchHook(BaseHook):
             rockets_str = ""
             if rockets_launched:
                 rockets_str = f" ({' & '.join(rockets_launched)})"
-                print(f"{len(rockets_launched)} rocket launch(es) on {self.first_date}{rockets_str}.")
+                print(
+                    f"{len(rockets_launched)} rocket launch(es) on {self.first_date}{rockets_str}."
+                )
 
     def _download_rocket_launches(self):
         query = f"https://launchlibrary.net/1.4/launch?startdate={self.first_date}&enddate={self.end_date}"

@@ -1,4 +1,3 @@
-
 """Example DAG demonstrating the usage of the BashOperator."""
 
 from datetime import timedelta
@@ -9,49 +8,30 @@ from airflow.operators.bash_operator import BashOperator
 from airflow.operators.dummy_operator import DummyOperator
 
 args = {
-    'owner': 'Airflow',
-    'start_date': airflow.utils.dates.days_ago(2),
+    "owner": "Airflow",
+    "start_date": airflow.utils.dates.days_ago(2),
 }
 
 dag = DAG(
-    dag_id='my_second_dag',
+    dag_id="my_second_dag",
     default_args=args,
-    schedule_interval='45 13 * * 1,3,5',
+    schedule_interval="45 13 * * 1,3,5",
     dagrun_timeout=timedelta(minutes=60),
 )
 
-run_this_last = DummyOperator(
-    task_id='run_this_last',
-    dag=dag,
-)
+run_this_last = DummyOperator(task_id="run_this_last", dag=dag,)
 
 # [START howto_operator_bash]
-run_this1 = BashOperator(
-    task_id='echo_1',
-    bash_command='echo 1',
-    dag=dag,
-)
+run_this1 = BashOperator(task_id="echo_1", bash_command="echo 1", dag=dag,)
 
 # [START howto_operator_bash]
-run_this2 = BashOperator(
-    task_id='echo_2',
-    bash_command='echo 2',
-    dag=dag,
-)
+run_this2 = BashOperator(task_id="echo_2", bash_command="echo 2", dag=dag,)
 
 # [START howto_operator_bash]
-run_this3 = BashOperator(
-    task_id='echo_3',
-    bash_command='echo 3',
-    dag=dag,
-)
+run_this3 = BashOperator(task_id="echo_3", bash_command="echo 3", dag=dag,)
 
 # [START howto_operator_bash]
-run_this4 = BashOperator(
-    task_id='echo4',
-    bash_command='echo 4',
-    dag=dag,
-)
+run_this4 = BashOperator(task_id="echo4", bash_command="echo 4", dag=dag,)
 # [END howto_operator_bash]
 
 
@@ -65,11 +45,10 @@ run_this4 = BashOperator(
 
 # [START howto_operator_bash_template]
 also_run_this = BashOperator(
-    task_id='also_run_this',
+    task_id="also_run_this",
     bash_command='echo "run_id={{ run_id }} | dag_run={{ dag_run }}"',
     dag=dag,
 )
 # [END howto_operator_bash_template]
 
 run_this1 >> run_this2 >> [run_this3, run_this4] >> also_run_this
-

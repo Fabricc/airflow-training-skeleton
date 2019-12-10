@@ -6,7 +6,6 @@ from launch_hook import LaunchHook
 
 
 class LaunchToGCSOperator(BaseOperator):
-
     @apply_defaults
     def __init__(self, first_date, end_date, *args, **kwargs):
         super().__init__(*args, **kwargs)
