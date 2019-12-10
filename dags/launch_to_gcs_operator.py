@@ -2,7 +2,7 @@ import airflow
 from airflow.models import BaseOperator
 from airflow.utils import apply_defaults
 
-from dags.launch_hook import LaunchHook
+from launch_hook import LaunchHook
 
 
 class LaunchToGCSOperator(BaseOperator):
