@@ -11,12 +11,11 @@ dag = DAG(
 )
 
 fetch_exchange_rates = HttpToGcsOperator(
-    endpoint=f"https://api.exchangeratesapi.io/history?start_at={airflow.utils.dates.days_ago(1)}&end_at={airflow.utils.dates.days_ago(0)}&symbols=EUR&base=GBP",
+    endpoint=f"/start_at={airflow.utils.dates.days_ago(1).date()}&end_at={airflow.utils.dates.days_ago(0).date()}&symbols=EUR&base=GBP",
     gcs_bucket="airflow_training_bucket",
     task_id="fetch_exchange_rates",
     gcs_path="bucket",
     method="GET",
-    http_conn_id="http_default",
     gcs_conn_id="google_cloud_default",
     dag=dag)
 
