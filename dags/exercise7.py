@@ -15,6 +15,7 @@ download_rocket_launches = LaunchToGCSOperator(
     first_date=airflow.utils.dates.days_ago(10),
     end_date=airflow.utils.dates.days_ago(1),
     task_id="download_rocket_launches",
+    provide_context=True,
     dag=dag,
 )
 
