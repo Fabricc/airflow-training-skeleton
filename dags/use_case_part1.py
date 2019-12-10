@@ -17,6 +17,7 @@ fetch_exchange_rates = HttpToGcsOperator(
     gcs_path="bucket",
     method="GET",
     http_conn_id="http_default",
-    gcs_conn_id="google_cloud_default",)
+    gcs_conn_id="google_cloud_default",
+    dag=dag)
 
 fetch_exchange_rates
