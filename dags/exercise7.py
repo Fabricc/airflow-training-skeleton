@@ -8,7 +8,7 @@ from airflow.operators.python_operator import PythonOperator
 
 from dags.LaunchToGCSOperator import LaunchToGCSOperator
 
-args = {"owner": "godatadriven", "start_date": airflow.utils.dates.days_ago(10)}
+args = {"owner": "godatadriven", "start_date": airflow.utils.dates.days_ago(1)}
 dag = DAG(
     dag_id="download_rocket_launchesExercise",
     default_args=args,
@@ -17,8 +17,8 @@ dag = DAG(
 )
 
 download_rocket_launches = LaunchToGCSOperator(
-    start_date="10/10/2001",
-    end_date="10/11/2001",
+    start_date=airflow.utils.dates.days_ago(10),
+    end_date=airflow.utils.dates.days_ago(1),
     task_id="download_rocket_launches",
     dag=dag,
 )

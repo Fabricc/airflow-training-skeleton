@@ -8,9 +8,9 @@ from dags.launch_hook import LaunchHook
 class LaunchToGCSOperator(BaseOperator):
 
     @apply_defaults
-    def __init__(self, start_date, end_date, *args, **kwargs):
+    def __init__(self, first_date, end_date, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._start_date = start_date
+        self._start_date = first_date
         self._end_date = end_date
 
     def execute(self, context):
