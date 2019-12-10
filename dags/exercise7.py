@@ -1,10 +1,5 @@
-import json
-import pathlib
-import posixpath
 import airflow
-import requests
 from airflow.models import DAG
-from airflow.operators.python_operator import PythonOperator
 
 from launch_to_gcs_operator import LaunchToGCSOperator
 
